@@ -24,10 +24,27 @@ It involves following steps,
    opening = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
 ```
 
+## Usage
+```python
+thresh_color_rgb = np.uint8([[[0,255,0]]]) # RGB value on which to threshold
+
+image = cv2.imread('C:/Users/Talha/Desktop/bean/KakaoTalk_20201116_160836253_23.png')
+
+op = cv2_thresh_seg(image, thresh_color_rgb, apply_morph = True)
+plt.imshow(op)
+```
+
 ## Results
 
 Following are some results,
+![alt text]()
+![alt text]()
+![alt text]()
+![alt text]()
+![alt text]()
 
 ## Failed Cases
 
 Following is one case where we have a lot weed in the background and it also got segmented as plant.
+
+![alt text]()
