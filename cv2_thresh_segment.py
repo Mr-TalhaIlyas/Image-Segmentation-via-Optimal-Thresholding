@@ -5,7 +5,7 @@ import matplotlib as mpl
 mpl.rcParams['figure.dpi'] = 300
 #%
 
-def cv2_thresh_seg(img, thresh_color_rgb, apply_morph = True):
+def cv2_thresh_seg(image, thresh_color_rgb, apply_morph = True):
     '''
 
     Parameters
