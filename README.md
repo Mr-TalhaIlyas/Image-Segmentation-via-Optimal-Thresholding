@@ -9,10 +9,12 @@ It involves following steps,
 * Now we'll define upper and lower bound/thresholds as [a-30,50,50]->lower, [a+10,b,c]->upper bound
 * We can also make these limits as hyperparameteres like in the code I defined alpha and beta
 ```python
-    alpha = 10
-    beta = 30
-    color = thresh_color_rgb #RGB Format
-    hsv_color = cv2.cvtColor(color,cv2.COLOR_RGB2HSV)
+    alpha = 10 # optimal value
+    beta = 30  # optimal value
+    
+    thresh_color_rgb = np.uint8([[[0,255,0]]]) # color value on which to apply threshold in RGB format
+    hsv_color = cv2.cvtColor(thresh_color_rgb,cv2.COLOR_RGB2HSV)
+    
     # upper bound on thresholding color
     upper = (hsv_color + np.uint8([[[alpha,0,0]]])).squeeze()
     # lower bound on thresholding color
@@ -27,9 +29,11 @@ It involves following steps,
 
 ## Usage
 ```python
-thresh_color_rgb = np.uint8([[[0,255,0]]]) # RGB value on which to threshold
+thresh_color_rgb = np.uint8([[[0,255,0]]]) # Order is [R, G, B] as we want to extract to green color
 
-image = cv2.imread('C:/Users/Talha/Desktop/bean/KakaoTalk_20201116_160836253_23.png')
+image = cv2.imread('C:/Users/Talha/Desktop/bean/img_133.jpg')  
+image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # change channel order
+
 
 op = cv2_thresh_seg(image, thresh_color_rgb, apply_morph = True)
 plt.imshow(op)
