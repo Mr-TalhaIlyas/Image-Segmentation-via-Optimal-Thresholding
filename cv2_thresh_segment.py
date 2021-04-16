@@ -24,7 +24,10 @@ def cv2_thresh_seg(image, thresh_color_rgb, apply_morph = True):
     # upper bound on thresholding color
     upper = (hsv_color + np.uint8([[[alpha,0,0]]])).squeeze()
     # lower bound on thresholding color
-    lower = np.array([hsv_color[0,0,0]-beta,50,50]).astype(np.uint8)
+    lower = np.array([hsv_color[0,0,0]-beta,50,50])
+    lower[lower<0] = 0              # romveing -ve values
+    lower = lower.astype(np.uint8)
+
     
     hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
     mask = cv2.inRange(hsv, lower, upper)
